@@ -11,19 +11,28 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            colors: ['red', 'green', 'blue', '#ccc']
+            color: 'red',
+            fontSize: 15
         }
+        this.onSetColor = this.onSetColor.bind(this);
     }
+
+    onSetColor (params) {
+        this.setState({
+            color: params
+        });
+    }
+
     render() {
         return (
             <div className="container mt-3">
                 <div className="row">
-                    <ColorPicker/>
+                    <ColorPicker color={ this.state.color } onReceiveColor={ this.onSetColor } />
                     <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <SizeSetting/>
                         <Reset/>
                     </div>
-                    <Result/>
+                    <Result color={ this.state.color } />
                 </div>
             </div>
         );
